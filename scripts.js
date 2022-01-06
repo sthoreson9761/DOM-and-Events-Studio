@@ -7,14 +7,18 @@ function init(){
     const upButton = document.getElementById("up");
     const downButton = document.getElementById("down");
     const leftButton = document.getElementById("left");
-    const rightButton = document.getElementById("right");
-
+    const rightButton = document.getElementById("right"); 
+    // const leftDir = document.getElementById("rocket").style.left.valueOf().substring(0,document.getElementById("rocket").style.left.valueOf().indexOf('px'));
+    // console.log(document.getElementById("rocket").style.left.valueOf(),typeof leftDir);
+    // const newLeft = leftDir +"px";
+    // document.getElementById("rocket").style.left = newLeft;//document.getElementById("rocket").style.left.valueOf();
+    // document.getElementById("rocket").style.top = document.getElementById("rocket").style.top.valueOf();
 
     takeOffButton.addEventListener("click",function(event){
         if(confirm("Is the shuttle ready for take off?").valueOf()){
             document.getElementById("flightStatus").innerHTML = "Shuttle in flight.";
             document.getElementById("shuttleBackground").style.background = "blue";
-            document.getElementById("spaceShuttleHeight").innerHTML = "10000";
+            document.getElementById("spaceShuttleHeight").innerHTML = 10000;
         }
     });
 
@@ -22,14 +26,14 @@ function init(){
         window.alert("the shuttle is landing.  Landing gear engaged.");
         document.getElementById("flightStatus").innerHTML = "The shuttle has landed.";
         document.getElementById("shuttleBackground").style.background = "green";
-        document.getElementById("spaceShuttleHeight").innerHTML = "0";
+        document.getElementById("spaceShuttleHeight").innerHTML = 0;
     });
 
     missionAbort.addEventListener("click",function(event){
         if(confirm("Confirm that you want to abort the mission.").valueOf()){
             document.getElementById("flightStatus").innerHTML = "Mission aborted.";
             document.getElementById("shuttleBackground").style.background = "green";
-            document.getElementById("spaceShuttleHeight").innerHTML = "0";
+            document.getElementById("spaceShuttleHeight").innerHTML = 0;
         }
     });
 
@@ -38,7 +42,7 @@ function init(){
         let topInit = Number(topValStr.substring(0,topValStr.indexOf('px')));
         let upPos = topInit - 10; 
         document.getElementById("rocket").style.top = upPos + "px";
-        document.getElementById("spaceShuttleHeight").innerHTML = Number(document.getElementById("spaceShuttleHeight")) + 10000;
+        document.getElementById("spaceShuttleHeight").innerHTML = Number(document.getElementById("spaceShuttleHeight").innerHTML) + 10000;
         // document.getElementById("rocket").style.top = upPos;
     });
 
@@ -48,16 +52,25 @@ function init(){
         let topInit = Number(topValStr.substring(0,topValStr.indexOf('px')));
         let upPos = topInit + 10; 
         document.getElementById("rocket").style.top = upPos + "px";
-        document.getElementById("spaceShuttleHeight").innerHTML = Number(document.getElementById("spaceShuttleHeight")) - 10000;
+        if(Number(document.getElementById("spaceShuttleHeight").innerHTML)>0){
+            document.getElementById("spaceShuttleHeight").innerHTML = Number(document.getElementById("spaceShuttleHeight").innerHTML) - 10000;
+        }
+        
     });
 
     leftButton.addEventListener("click",function(event){
-        document.getElementById("rocket").style.left = "120px";
+        let topValStr = document.getElementById("rocket").style.left.valueOf().substring(0,document.getElementById("rocket").style.left.valueOf().indexOf('px'));
+        let topInit = Number(topValStr);
+        let upPos = topInit - 10;
+        document.getElementById("rocket").style.left = upPos + "px";
     });
 
     rightButton.addEventListener("click",function(event){
-
-        document.getElementById("rocket").style.left = "180px";
+        let topValStr = document.getElementById("rocket").style.left.valueOf();
+        let topInit = Number(topValStr.substring(0,topValStr.indexOf('px')));
+        let upPos = topInit + 10;
+        document.getElementById("rocket").style.left = upPos + "px";
+        // document.getElementById("rocket").style.left = "180px";
     });
 }
 window.addEventListener("load", init);
