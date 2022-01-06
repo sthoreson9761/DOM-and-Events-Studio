@@ -14,7 +14,7 @@ function init(){
         if(confirm("Is the shuttle ready for take off?").valueOf()){
             document.getElementById("flightStatus").innerHTML = "Shuttle in flight.";
             document.getElementById("shuttleBackground").style.background = "blue";
-            document.getElementById("spaceShuttleHeight").innerHTML = "10,000";
+            document.getElementById("spaceShuttleHeight").innerHTML = "10000";
         }
     });
 
@@ -34,17 +34,21 @@ function init(){
     });
 
     upButton.addEventListener("click",function(event){
-        // let topValStr = 
-        // let topInit = Number()
-        // let upPos = 
-        document.getElementById("rocket").style.top = "130px";
-        document.getElementById("spaceShuttleHeight").innerHTML = "10,000";
+        let topValStr = document.getElementById("rocket").style.top.valueOf();
+        let topInit = Number(topValStr.substring(0,topValStr.indexOf('px')));
+        let upPos = topInit - 10; 
+        document.getElementById("rocket").style.top = upPos + "px";
+        document.getElementById("spaceShuttleHeight").innerHTML = Number(document.getElementById("spaceShuttleHeight")) + 10000;
         // document.getElementById("rocket").style.top = upPos;
     });
 
     downButton.addEventListener("click",function(event){
-        document.getElementById("rocket").style.top = "160px";
-        document.getElementById("spaceShuttleHeight").innerHTML = "0";
+        // document.getElementById("rocket").style.top = "160px";
+        let topValStr = document.getElementById("rocket").style.top.valueOf();
+        let topInit = Number(topValStr.substring(0,topValStr.indexOf('px')));
+        let upPos = topInit + 10; 
+        document.getElementById("rocket").style.top = upPos + "px";
+        document.getElementById("spaceShuttleHeight").innerHTML = Number(document.getElementById("spaceShuttleHeight")) - 10000;
     });
 
     leftButton.addEventListener("click",function(event){
@@ -53,7 +57,7 @@ function init(){
 
     rightButton.addEventListener("click",function(event){
 
-        document.getElementById("rocket").style.right = "0px";
+        document.getElementById("rocket").style.left = "180px";
     });
 }
 window.addEventListener("load", init);
